@@ -1,0 +1,482 @@
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f7fa;
+  color: #333;
+}
+
+button {
+  cursor: pointer;
+}
+
+
+/* =========================
+   LANDING PAGE
+========================= */
+
+.landing-page {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(
+    135deg,
+    #f8f0ff,
+    #ffffff
+  );
+}
+
+.landing-content {
+  width: 700px;
+
+  background: white;
+
+  padding: 60px;
+
+  border-radius: 20px;
+
+  text-align: center;
+
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.08);
+}
+
+.landing-content h1 {
+  font-size: 42px;
+
+  color: #a832e8;
+
+  margin-bottom: 20px;
+}
+
+.landing-content p {
+  font-size: 18px;
+
+  color: #666;
+
+  line-height: 1.6;
+}
+
+.primary-button {
+  margin-top: 25px;
+
+  background: #a832e8;
+
+  color: white;
+
+  border: none;
+
+  padding: 15px 30px;
+
+  border-radius: 8px;
+
+  font-size: 17px;
+
+  font-weight: bold;
+}
+
+.primary-button:hover {
+  background: #9225d2;
+}
+
+
+/* =========================
+   LOGIN PAGE
+========================= */
+
+.login-container {
+  min-height: calc(100vh - 20px);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 40px 20px;
+}
+
+.login-card {
+  width: 720px;
+
+  background: white;
+
+  border: 1px solid #ddd;
+
+  border-radius: 18px;
+
+  padding: 45px;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.07);
+}
+
+.login-card h1 {
+  text-align: center;
+
+  color: #a832e8;
+
+  font-size: 34px;
+
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  text-align: center;
+
+  color: #777;
+
+  font-size: 17px;
+}
+
+
+/* Profiles */
+
+.profiles {
+  background: #f1f2f4;
+
+  border: 1px dashed #ccc;
+
+  border-radius: 10px;
+
+  padding: 20px;
+
+  margin: 30px 0;
+}
+
+.profiles h3 {
+  margin-top: 0;
+
+  color: #3d4652;
+}
+
+.profile {
+  padding: 15px 0;
+
+  border-bottom: 1px solid #ddd;
+}
+
+.profile:last-child {
+  border-bottom: none;
+}
+
+.profile strong {
+  color: #a832e8;
+}
+
+.profile span {
+  float: right;
+}
+
+.profile p {
+  color: #777;
+
+  font-style: italic;
+
+  margin-bottom: 0;
+}
+
+
+/* Login form */
+
+.login-card label {
+  display: block;
+
+  margin-top: 20px;
+
+  margin-bottom: 8px;
+
+  font-weight: bold;
+}
+
+.login-card input {
+  width: 100%;
+
+  padding: 15px;
+
+  border: 1px solid #ccc;
+
+  border-radius: 9px;
+
+  font-size: 16px;
+
+  outline: none;
+}
+
+.login-card input:focus {
+  border-color: #a832e8;
+}
+
+.login-button {
+  width: 100%;
+
+  margin-top: 25px;
+
+  background: #a832e8;
+
+  color: white;
+
+  border: none;
+
+  padding: 15px;
+
+  border-radius: 8px;
+
+  font-size: 17px;
+
+  font-weight: bold;
+}
+
+.login-button:hover {
+  background: #9225d2;
+}
+
+.error {
+  color: #e74c3c;
+
+  font-weight: bold;
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard {
+  max-width: 1100px;
+
+  margin: 40px auto;
+
+  padding: 20px;
+}
+
+
+/* Header */
+
+.dashboard-header {
+  background: white;
+
+  padding: 25px;
+
+  border-radius: 15px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-header h1 {
+  margin-top: 0;
+
+  color: #a832e8;
+}
+
+.dashboard-header p {
+  color: #666;
+}
+
+.dashboard-header button {
+  background: #e74c3c;
+
+  color: white;
+
+  border: none;
+
+  padding: 12px 20px;
+
+  border-radius: 7px;
+
+  font-weight: bold;
+}
+
+
+/* =========================
+   PERMISSION MESSAGE
+========================= */
+
+.info-box {
+  margin-top: 25px;
+
+  background: #fff3cd;
+
+  border: 1px solid #ffe69c;
+
+  padding: 18px 20px;
+
+  border-radius: 10px;
+
+  color: #664d03;
+}
+
+
+/* =========================
+   POST COMPOSER
+========================= */
+
+.composer {
+  background: white;
+
+  margin-top: 25px;
+
+  padding: 30px;
+
+  border-radius: 15px;
+
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.composer h2 {
+  color: #333;
+
+  margin-top: 0;
+}
+
+.composer input,
+.composer textarea {
+  width: 100%;
+
+  padding: 14px;
+
+  margin: 10px 0;
+
+  border: 1px solid #ccc;
+
+  border-radius: 8px;
+
+  font-size: 16px;
+
+  font-family: inherit;
+}
+
+.composer textarea {
+  height: 120px;
+
+  resize: vertical;
+}
+
+.composer button {
+  background: #a832e8;
+
+  color: white;
+
+  border: none;
+
+  padding: 11px 20px;
+
+  border-radius: 7px;
+
+  font-weight: bold;
+}
+
+
+/* =========================
+   POSTS
+========================= */
+
+.posts {
+  margin-top: 30px;
+}
+
+.posts > h2 {
+  color: #333;
+}
+
+.post-card {
+  background: white;
+
+  margin: 15px 0;
+
+  padding: 25px;
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+.post-card h3 {
+  color: #a832e8;
+
+  margin-top: 0;
+}
+
+.post-card p {
+  color: #555;
+
+  line-height: 1.6;
+}
+
+.post-card button {
+  background: #a832e8;
+
+  color: white;
+
+  border: none;
+
+  padding: 9px 17px;
+
+  border-radius: 7px;
+
+  margin-right: 10px;
+}
+
+.post-card button:last-child {
+  background: #e74c3c;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+  .login-card {
+    width: 100%;
+
+    padding: 25px;
+  }
+
+  .landing-content {
+    width: 90%;
+
+    padding: 35px 20px;
+  }
+
+  .landing-content h1 {
+    font-size: 32px;
+  }
+
+  .profile span {
+    float: none;
+
+    display: block;
+
+    margin-top: 5px;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 20px;
+  }
+
+}
