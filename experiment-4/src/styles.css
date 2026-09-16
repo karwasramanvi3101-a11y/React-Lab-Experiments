@@ -1,0 +1,597 @@
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+  margin: 0;
+
+  background: #080b12;
+
+  color: #e8ecf4;
+
+  font-family:
+    Arial,
+    sans-serif;
+}
+
+
+button {
+  font-family: inherit;
+
+  cursor: pointer;
+}
+
+
+.app {
+  min-height: 100vh;
+
+  padding: 35px;
+}
+
+
+/* =================================
+   HEADER
+================================= */
+
+.header {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  max-width: 1500px;
+
+  margin: auto;
+
+  margin-bottom: 25px;
+}
+
+
+.eyebrow {
+
+  color: #748098;
+
+  font-size: 11px;
+
+  letter-spacing: 2px;
+
+  font-weight: bold;
+}
+
+
+h1 {
+
+  margin: 8px 0;
+
+  font-size: 38px;
+}
+
+
+.header p {
+
+  color: #7f8ba1;
+}
+
+
+/* =================================
+   HEADER RENDER
+================================= */
+
+.render-header {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 15px 20px;
+
+  border: 1px solid #202838;
+
+  border-radius: 12px;
+
+  background: #101520;
+}
+
+
+.green-dot {
+
+  width: 9px;
+
+  height: 9px;
+
+  border-radius: 50%;
+
+  background: #58d39a;
+}
+
+
+.render-header strong {
+
+  display: block;
+
+  font-size: 20px;
+}
+
+
+.render-header small {
+
+  color: #77839a;
+}
+
+
+/* =================================
+   TOGGLE
+================================= */
+
+.mode-container {
+
+  max-width: 1500px;
+
+  margin: 0 auto 20px;
+
+  display: flex;
+
+  background: #0e131d;
+
+  border: 1px solid #202838;
+
+  border-radius: 12px;
+
+  padding: 5px;
+
+  width: fit-content;
+}
+
+
+.mode-btn {
+
+  border: none;
+
+  padding: 12px 20px;
+
+  border-radius: 8px;
+
+  background: transparent;
+
+  color: #78849a;
+
+  font-weight: bold;
+}
+
+
+.mode-btn.active {
+
+  background: #173528;
+
+  color: #75ddb0;
+}
+
+
+.mode-btn.active.orange {
+
+  background: #3a281f;
+
+  color: #f2aa77;
+}
+
+
+/* =================================
+   MAIN LAYOUT
+================================= */
+
+.main-layout {
+
+  max-width: 1500px;
+
+  margin: auto;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 320px;
+
+  gap: 20px;
+}
+
+
+/* =================================
+   CALENDAR
+================================= */
+
+.calendar {
+
+  border: 1px solid #202838;
+
+  border-radius: 15px;
+
+  overflow: hidden;
+
+  background: #0e131d;
+}
+
+
+.calendar-title {
+
+  padding: 20px;
+
+  border-bottom:
+    1px solid #202838;
+}
+
+
+.calendar-title h2 {
+
+  margin: 0 0 5px;
+}
+
+
+.calendar-title span {
+
+  color: #77839a;
+
+  font-size: 12px;
+}
+
+
+/* =================================
+   7 DAYS
+================================= */
+
+.days {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(7, 1fr);
+
+  min-height: 550px;
+}
+
+
+.day-column {
+
+  border-right:
+    1px solid #202838;
+
+  background: #0b1018;
+
+  transition: .15s;
+}
+
+
+.day-column:hover {
+
+  background: #111824;
+}
+
+
+.day-header {
+
+  padding: 15px 8px;
+
+  text-align: center;
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  color: #9da8bb;
+
+  border-bottom:
+    1px solid #202838;
+}
+
+
+/* =================================
+   TASK AREA
+================================= */
+
+.day-tasks {
+
+  min-height: 480px;
+
+  padding: 10px;
+}
+
+
+/* =================================
+   TASK
+================================= */
+
+.task {
+
+  padding: 10px;
+
+  margin-bottom: 8px;
+
+  border-radius: 8px;
+
+  cursor: grab;
+
+  user-select: none;
+}
+
+
+.task:active {
+
+  cursor: grabbing;
+}
+
+
+.task strong {
+
+  display: block;
+
+  font-size: 12px;
+}
+
+
+.task span {
+
+  display: block;
+
+  margin-top: 5px;
+
+  font-size: 10px;
+
+  color: #8d98aa;
+}
+
+
+.task small {
+
+  display: block;
+
+  margin-top: 8px;
+
+  font-size: 9px;
+
+  color: #69758b;
+}
+
+
+/* =================================
+   OPTIMIZATION TASK
+================================= */
+
+.task.optimized {
+
+  background: #143428;
+
+  border-left:
+    3px solid #53d49a;
+}
+
+
+/* =================================
+   NON OPTIMIZATION TASK
+================================= */
+
+.task.non-optimized {
+
+  background: #38271f;
+
+  border-left:
+    3px solid #e89a63;
+}
+
+
+/* =================================
+   RIGHT PANEL
+================================= */
+
+.right-panel {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+
+/* =================================
+   PANEL
+================================= */
+
+.panel {
+
+  padding: 20px;
+
+  border: 1px solid #202838;
+
+  border-radius: 15px;
+
+  background: #0e131d;
+}
+
+
+/* =================================
+   PANEL HEADER
+================================= */
+
+.panel-heading {
+
+  display: flex;
+
+  justify-content:
+    space-between;
+
+  align-items: center;
+
+  color: #9ca7ba;
+
+  font-size: 12px;
+
+  font-weight: bold;
+}
+
+
+.live {
+
+  color: #58d39a;
+
+  font-size: 9px;
+}
+
+
+/* =================================
+   RENDER NUMBER
+================================= */
+
+.render-number {
+
+  margin-top: 15px;
+
+  font-size: 48px;
+
+  font-weight: bold;
+}
+
+
+.panel p {
+
+  color: #748097;
+
+  font-size: 12px;
+
+  line-height: 1.6;
+}
+
+
+/* =================================
+   RENDER COMPARISON
+================================= */
+
+.comparison {
+
+  margin-top: 20px;
+
+  display: grid;
+
+  gap: 10px;
+}
+
+
+.comparison div {
+
+  display: flex;
+
+  justify-content:
+    space-between;
+
+  align-items: center;
+
+  padding: 12px;
+
+  border-radius: 8px;
+
+  background: #0b1018;
+}
+
+
+.comparison span {
+
+  color: #8a96aa;
+
+  font-size: 11px;
+}
+
+
+.comparison strong {
+
+  font-size: 18px;
+}
+
+
+/* =================================
+   ALL TASKS
+================================= */
+
+.all-tasks {
+
+  margin-top: 15px;
+}
+
+
+.task-row {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 10px 0;
+
+  border-bottom:
+    1px solid #1c2432;
+}
+
+
+.task-indicator {
+
+  width: 7px;
+
+  height: 7px;
+
+  border-radius: 50%;
+}
+
+
+.task-indicator.green {
+
+  background: #53d49a;
+}
+
+
+.task-indicator.orange {
+
+  background: #e89a63;
+}
+
+
+.task-info strong {
+
+  display: block;
+
+  font-size: 12px;
+}
+
+
+.task-info span {
+
+  display: block;
+
+  margin-top: 4px;
+
+  color: #748097;
+
+  font-size: 10px;
+}
+
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+@media (max-width: 1100px) {
+
+  .main-layout {
+
+    grid-template-columns: 1fr;
+  }
+
+  .right-panel {
+
+    display: grid;
+
+    grid-template-columns:
+      repeat(3, 1fr);
+  }
+}
