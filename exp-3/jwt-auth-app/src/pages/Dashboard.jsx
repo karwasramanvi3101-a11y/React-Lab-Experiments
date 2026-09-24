@@ -6,14 +6,11 @@ import {
   logout
 } from "../utils/auth";
 
-
 function Dashboard() {
-
   const navigate = useNavigate();
 
   // Get logged-in user from JWT
   const user = getCurrentUser();
-
 
   // -----------------------------
   // POSTS
@@ -33,189 +30,142 @@ function Dashboard() {
     }
   ]);
 
-
   // -----------------------------
   // FORM DATA
   // -----------------------------
 
   const [title, setTitle] = useState("");
-
   const [content, setContent] = useState("");
-
   const [editingId, setEditingId] = useState(null);
-
 
   // -----------------------------
   // CHECK LOGIN
   // -----------------------------
 
   if (!user) {
-
     navigate("/login");
-
     return null;
-
   }
-
 
   // -----------------------------
   // ROLE PERMISSIONS
   // -----------------------------
 
-  const canCreate =
-    user.role === "Admin";
+  const canCreate = user.role === "Admin";
 
   const canEdit =
     user.role === "Admin" ||
     user.role === "Editor";
 
-  const canDelete =
-    user.role === "Admin";
-
+  const canDelete = user.role === "Admin";
 
   // -----------------------------
   // CREATE POST
   // -----------------------------
 
   const addPost = () => {
-
     if (!title.trim() || !content.trim()) {
-
       alert("Please enter title and content.");
-
       return;
-
     }
 
-
     const newPost = {
-
       id: Date.now(),
-
       title: title,
-
       content: content
-
     };
 
-
-    setPosts([
-      ...posts,
-      newPost
-    ]);
-
+    setPosts([...posts, newPost]);
 
     setTitle("");
-
     setContent("");
-
   };
-
 
   // -----------------------------
   // DELETE POST
   // -----------------------------
 
   const deletePost = (id) => {
-
     setPosts(
       posts.filter(
         (post) => post.id !== id
       )
     );
-
   };
-
 
   // -----------------------------
   // START EDIT
   // -----------------------------
 
   const startEdit = (post) => {
+    if (!canEdit) {
+      return;
+    }
 
     setEditingId(post.id);
-
     setTitle(post.title);
-
     setContent(post.content);
-
   };
-
 
   // -----------------------------
   // UPDATE POST
   // -----------------------------
 
   const updatePost = () => {
-
     if (!title.trim() || !content.trim()) {
-
       alert("Please enter title and content.");
-
       return;
-
     }
 
-
     setPosts(
-
       posts.map((post) =>
-
         post.id === editingId
-
           ? {
               ...post,
               title: title,
               content: content
             }
-
           : post
-
       )
-
     );
 
-
     setEditingId(null);
-
     setTitle("");
-
     setContent("");
-
   };
 
+  // -----------------------------
+  // CANCEL EDIT
+  // -----------------------------
+
+  const cancelEdit = () => {
+    setEditingId(null);
+    setTitle("");
+    setContent("");
+  };
 
   // -----------------------------
   // LOGOUT
   // -----------------------------
 
   const handleLogout = () => {
-
     logout();
-
     navigate("/login");
-
   };
-
 
   // -----------------------------
   // DASHBOARD UI
   // -----------------------------
 
   return (
-
     <div className="dashboard">
-
 
       {/* HEADER */}
 
       <div className="dashboard-header">
 
         <div>
-
-          <h1>
-            Post Composer
-          </h1>
+          <h1>Post Composer</h1>
 
           <p>
             Logged in as:
@@ -230,18 +180,13 @@ function Dashboard() {
               {" "}{user.role}
             </strong>
           </p>
-
         </div>
 
-
-        <button
-          onClick={handleLogout}
-        >
+        <button onClick={handleLogout}>
           Logout
         </button>
 
       </div>
-
 
 
       {/* PERMISSION MESSAGE */}
@@ -249,123 +194,92 @@ function Dashboard() {
       <div className="info-box">
 
         {user.role === "Admin" && (
-
           <p>
             <strong>Admin Access:</strong>{" "}
             You can create, view, edit,
             and delete posts.
           </p>
-
         )}
 
-
         {user.role === "Editor" && (
-
           <p>
             <strong>Editor Access:</strong>{" "}
             You can view and edit posts.
             You cannot create or delete posts.
           </p>
-
         )}
 
-
         {user.role === "Viewer" && (
-
           <p>
             <strong>Viewer Access:</strong>{" "}
             You have read-only access.
           </p>
-
         )}
 
       </div>
 
 
-
       {/* CREATE / EDIT FORM */}
 
-      {canCreate && (
-
+      {(canCreate || canEdit) && (
         <div className="composer">
 
           <h2>
-
             {editingId
               ? "Edit Post"
-              : "Create New Post"}
-
+              : canCreate
+                ? "Create New Post"
+                : "Select a Post to Edit"}
           </h2>
 
-
           <input
-
             type="text"
-
             placeholder="Post title"
-
             value={title}
-
             onChange={(e) =>
               setTitle(e.target.value)
             }
-
+            disabled={!canCreate && !editingId}
           />
 
-
           <textarea
-
             placeholder="Write your post..."
-
             value={content}
-
             onChange={(e) =>
               setContent(e.target.value)
             }
-
+            disabled={!canCreate && !editingId}
           />
 
+          {/* ADMIN CAN CREATE */}
 
-          {editingId ? (
-
-            <button
-              onClick={updatePost}
-            >
-              Update Post
-            </button>
-
-          ) : (
-
-            <button
-              onClick={addPost}
-            >
+          {canCreate && !editingId && (
+            <button onClick={addPost}>
               Create Post
             </button>
+          )}
 
+          {/* ADMIN + EDITOR CAN UPDATE */}
+
+          {editingId && canEdit && (
+            <>
+              <button onClick={updatePost}>
+                Update Post
+              </button>
+
+              <button
+                onClick={cancelEdit}
+                style={{
+                  marginLeft: "10px"
+                }}
+              >
+                Cancel
+              </button>
+            </>
           )}
 
         </div>
-
       )}
-
-
-
-      {/* EDITOR FORM */}
-
-      {!canCreate &&
-        canEdit && (
-
-          <div className="info-box">
-
-            <p>
-              Select an existing post
-              below to edit it.
-            </p>
-
-          </div>
-
-        )}
-
 
 
       {/* POSTS */}
@@ -375,7 +289,6 @@ function Dashboard() {
         <h2>
           Available Posts
         </h2>
-
 
         {posts.map((post) => (
 
@@ -388,19 +301,15 @@ function Dashboard() {
               {post.title}
             </h3>
 
-
             <p>
               {post.content}
             </p>
 
-
             <div>
-
 
               {/* EDIT BUTTON */}
 
               {canEdit && (
-
                 <button
                   onClick={() =>
                     startEdit(post)
@@ -408,14 +317,11 @@ function Dashboard() {
                 >
                   Edit
                 </button>
-
               )}
-
 
               {/* DELETE BUTTON */}
 
               {canDelete && (
-
                 <button
                   onClick={() =>
                     deletePost(post.id)
@@ -423,7 +329,6 @@ function Dashboard() {
                 >
                   Delete
                 </button>
-
               )}
 
             </div>
@@ -435,9 +340,7 @@ function Dashboard() {
       </div>
 
     </div>
-
   );
-
 }
 
 export default Dashboard;
